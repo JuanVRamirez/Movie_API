@@ -19,6 +19,19 @@ main{
     background-position: center;
 
 }
+.pink_buttons {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: white;
+    font-weight: 700;
+    background-color: #F34096;
+    width: 100px;
+    height: 30px;
+    border: none;
+    box-shadow: 0px 6px 16px 4px #F340964D;
+    border-radius: 25px;
+    cursor: pointer;
+}
 .header_text{
     position: absolute;
     width: 20%;
@@ -68,20 +81,27 @@ main{
     color: white;
 }
 .popular_movies .popular_movies__cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); 
-    row-gap:  30px; 
+    display: flex;
+    overflow-x: scroll;
+    overscroll-behavior-x: contain;
+    scroll-snap-type:x proximity;
     column-gap: 20px;
-    grid-auto-flow: row; 
+    overscroll-behavior-x: contain;
+    scroll-snap-type:x proximity;
+    cursor: grab;
+}
+.popular_movies .popular_movies__cards::-webkit-scrollbar{
+    background-color: #090911;
+    height: 3px;
 }
 .popular_movies .popular_movies__cards article{
-    width: 100%;
-    height: auto;
+    min-width: 130px;
+    height: 230px;
     line-height: 4px;
 }
 .popular_movies .popular_movies__cards article img{
     width: 100%;
-    height: 90%;
+    height: 80%;
     border-radius: 10px;
 }
 .popular_movies .popular_movies__cards article .movie_title{
@@ -104,17 +124,3 @@ main{
     display: flex;
     justify-content: end;
 }
-.popular_movies .popular_movies__button{
-    margin-top: 40px;
-    margin-bottom: 40px;
-    color: white;
-    font-weight: 700;
-    background-color: #F34096;
-    width: 100px;
-    height: 30px;
-    border: none;
-    box-shadow: 0px 6px 16px 4px #F340964D;
-    border-radius: 25px;
-    cursor: pointer;
-}
-
