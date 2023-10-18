@@ -1,5 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,700;0,900;1,400&display=swap');
 
+:root {
+    --purple-light-1: #FBFAFB;
+    --purple-light-2: #EEEAF2;
+    --purple-medium-1: #AA83C8;
+    --purple-medium-2: #8B48BF;
+    --purple-medium-3: #5C218A;
+    --purple-dark-1: #3E0F64;
+    --purple-dark-2: #2A0646;
+    --yellow: #EECC75;
+    --green: #CAD297;
+    --aqua: #B7EAC5;
+    --lightBlue: #A2EEE5;
+    --darkBlue: #8EA2EA;
+    --red: #F09D9D;
+  }
+.inactive {
+    display: none;
+}
+
+.titles {
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+}
 body {
     margin: 0;
     padding: 0;
@@ -8,8 +32,7 @@ body {
     font-family: 'Lato', sans-serif;
     color: white;
 }
-main{
-    position: relative;
+.header{
     width: 100%;
     height: 400px;
     background-image: url(../assets/tv-smoke-peaky-blinders-cillian-murphy-wallpaper-13cf27572d3b3c1d08ec50c3c5d7980f.jpg);
@@ -19,14 +42,14 @@ main{
     background-position: center;
 
 }
-.pink_buttons {
+#pink_buttons {
     margin-top: 10px;
     margin-bottom: 20px;
     color: white;
     font-weight: 700;
     background-color: #F34096;
-    width: 100px;
-    height: 30px;
+    width: 140px;
+    height: 50px;
     border: none;
     box-shadow: 0px 6px 16px 4px #F340964D;
     border-radius: 25px;
@@ -37,7 +60,7 @@ main{
     width: 20%;
     height: 30%;
     right: 120px;
-    bottom: 95px;
+    top: 147px;
 
 }
 .header_text .header_text__button{
@@ -65,22 +88,69 @@ main{
 }
 .searchBar a svg{
     padding: 8px 10px;;
-   width: 16px;
+   width: 20px;
 }
 
-/* Popular Movies */
+ /* Movie Info */
+.movie_header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../assets/pokemon.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    opacity: 0.4;
+    z-index: -1;
+  }
+.movie_header {
+    width: 100%;
+    height: 350px;
+    position: relative;
+    color: white;
+  }
+.back_btn{
+    width: 80px;
+    margin: 15px 10px;
+    cursor: pointer;
+}
+.movie_info__container{
+    margin-top: -90px;
+    margin-bottom: 40px;
+}
+.movie_info{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+    flex-wrap: wrap;
+}
+.movie_info__text{
+    width: 50%;
+}
+
+/* Popular Movies and series */
 
 .popular_movies{
     width: 80%;
     height: auto;
-    margin: 278px auto 0px;
+    margin: -124px auto 0px;
+   
 }
-.popular_movies h1 {
-    font-size: 30px;
+section{
+    width: 80%;
+    height: auto;
+    margin: 40px auto 0px;
+}
+h1 {
+    font-size: 40px;
     font-weight: 700;
     color: white;
 }
-.popular_movies .popular_movies__cards {
+.popular_movies #popular_movies__cards, #popular_series__cards{
     display: flex;
     overflow-x: scroll;
     overscroll-behavior-x: contain;
@@ -89,38 +159,121 @@ main{
     overscroll-behavior-x: contain;
     scroll-snap-type:x proximity;
     cursor: grab;
+    height: 380px;
 }
-.popular_movies .popular_movies__cards::-webkit-scrollbar{
+#popular_movies__cards article:hover, #popular_series__cards article:hover{
+    transform: scale(1.02);
+    cursor: pointer;
+}
+.popular_movies #popular_movies__cards::-webkit-scrollbar, #popular_series__cards::-webkit-scrollbar{
     background-color: #090911;
     height: 3px;
 }
-.popular_movies .popular_movies__cards article{
-    min-width: 130px;
-    height: 230px;
-    line-height: 4px;
+.popular_movies #popular_movies__cards article, #popular_series__cards article{
+    min-width: 200px;
+    height: 340px;
+    line-height: 12px;
 }
-.popular_movies .popular_movies__cards article img{
+.popular_movies #popular_movies__cards article img, #popular_series__cards article img{
     width: 100%;
     height: 80%;
     border-radius: 10px;
 }
-.popular_movies .popular_movies__cards article .movie_title{
+.popular_movies #popular_movies__cards article .movie_title, #popular_series__cards article .movie_title{
     margin: 8px 0 0 0 ;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
 }
-.popular_movies .popular_movies__cards article .cards_icons{
+.popular_movies #popular_movies__cards article .cards_icons, #popular_series__cards article .cards_icons{
     display: flex;
-    font-size: 10px;
+    font-size: 14px;
     align-items: center;
     justify-content: space-between;
 }
-.popular_movies .popular_movies__cards article .cards_icons svg{
+.popular_movies #popular_movies__cards article .cards_icons svg, #popular_series__cards article .cards_icons svg{
     width: 16px;
     margin-left: 4px;
 }
-.popular_movies_div_button{
+.popular_movies_div_button,.popular_series_div_button{
     width: 100%;
     display: flex;
     justify-content: end;
+}
+
+  /*------------- Movie Genres ------------*/
+
+#movie_genres__cards {
+    display: flex;
+    overflow-x: scroll;
+    overscroll-behavior-x: contain;
+    scroll-snap-type:x proximity;
+    column-gap: 20px;
+    overscroll-behavior-x: contain;
+    scroll-snap-type:x proximity;
+    cursor: grab;
+    height: auto;
+}
+#movie_genres__cards::-webkit-scrollbar{
+    background-color: #090911;
+    height: 3px;
+}
+.movie_genres_image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--idColor);
+    position: relative;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    min-width: 200px;
+    height: 60px;
+    line-height: 12px;
+    cursor: pointer;
+}
+
+.movie_genres_image p {
+    line-height: 30px;
+    color: #090911; 
+    font-size: 20px;
+    font-weight: bold;
+    padding: 8px 16px;
+}
+
+.genre_movies_div_button{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+#id28 { --idColor: var(--yellow); }
+#id12 { --idColor: var(--red); }
+#id16 { --idColor: var(--green); }
+#id35 { --idColor: var(--lightBlue); }
+#id80 { --idColor: var(--darkBlue); }
+#id99 { --idColor: var(--purple-dark-1); }
+#id18 { --idColor: var(--purple-medium-1); }
+#id10751 { --idColor: var(--yellow); }
+#id14 { --idColor: var(--red); }
+#id36 { --idColor: var(--green); }
+#id27 { --idColor: var(--lightBlue); }
+#id10402 { --idColor: var(--darkBlue); }
+#id9648 { --idColor: var(--purple-dark-1); }
+#id10749 { --idColor: var(--purple-medium-1); }
+#id878 { --idColor: var(--yellow); }
+#id10770 { --idColor: var(--red); }
+#id53 { --idColor: var(--green); }
+#id10752 { --idColor: var(--lightBlue); }
+#id37 { --idColor: var(--darkBlue); }
+
+
+@media screen and (max-width: 767px){
+    .movie_info__text{
+        width: 100%;
+    }
+    .movie_info{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 }
