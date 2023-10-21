@@ -1,13 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,700;0,900;1,400&display=swap');
 
+html{
+    width: 100%;
+    height: 100%;
+}
+
 :root {
     --purple-light-1: #FBFAFB;
     --purple-light-2: #EEEAF2;
     --purple-medium-1: #AA83C8;
     --purple-medium-2: #8B48BF;
-    --purple-medium-3: #5C218A;
-    --purple-dark-1: #3E0F64;
-    --purple-dark-2: #2A0646;
+    --purple-medium-3: #7623b5;
+    --purple-dark-1: #9f39f2;
+    --purple-dark-2: #931eec;
     --yellow: #EECC75;
     --green: #CAD297;
     --aqua: #B7EAC5;
@@ -42,7 +47,7 @@ body {
     background-position: center;
 
 }
-#pink_buttons {
+.pink_buttons {
     margin-top: 10px;
     margin-bottom: 20px;
     color: white;
@@ -99,13 +104,147 @@ body {
     left: 190px;
     top: 147px;
 }
-#searchForm input {
+#searchForm input, #searchForm_category input {
     height: 40px;
     width: 300px;
     border-radius: 25px;
     outline: none;
     border: none;
     padding-left: 14px;
+}
+#searchForm button, #searchForm_category button {
+    background: none;
+    border: none;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+.search_btn{
+    width: 28px;
+}
+#searchForm button:hover, #searchForm_category button:hover{
+    transform: (1.1);
+}
+
+ /* Movie Info */
+
+#movie_page_container{
+    display: flex;
+    gap: 50px;
+    background-image: linear-gradient(to bottom, #090910, #2b1d2d, #572a3d, #813c3b, #9b5a2e);
+}
+.movie_header {
+    width: 1000px;
+    min-height: 100vh;
+    position: relative;
+    color: white;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+  }
+.movie_category #movie_genres_image{
+    width: 10px; 
+}
+#movie_genre_card{
+    display: flex;
+    overflow-x: scroll;
+    overscroll-behavior-x: contain;
+    scroll-snap-type:x proximity;
+    column-gap: 20px;
+    overscroll-behavior-x: contain;
+    scroll-snap-type:x proximity;
+    cursor: grab;
+    height: auto;
+}
+#movie_genre_card::-webkit-scrollbar{
+    background-color: none;
+    height: 3px;
+}
+#movie_genre_card .movie_genres_image{
+    width: auto;
+    height: auto;
+    margin: 18px 0 30px 0;
+}
+#movie_genre_card p{
+    font-size: auto;
+    margin: 0;
+    text-align: center;
+}
+.back_btn{
+    width: 80px;
+    margin: 15px 10px;
+    cursor: pointer;
+    z-index: 3;
+}
+#back_btn_movie{
+    position: absolute;
+}
+.movie_info__container{
+    margin-top: -90px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.movie_overview{
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    text-align: justify;
+}
+.movie_info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 80px;
+    flex-wrap: wrap;
+}
+.movie_info h1{
+    z-index: 4;
+}
+.movie_info iframe{
+    width: 90%;
+    height: 400px;
+}
+.movie_info__text{
+    width: 90%;
+}
+
+/* Categories */
+.category_page{
+    width: 100%;
+    min-height: 100vh;
+    max-height: 100%;
+    background-image: linear-gradient(to bottom, #090910, #2b1d2d, #572a3d, #813c3b, #9b5a2e);
+}
+.category_info__container{
+    margin-top: -30px;
+}
+.category_info__title{
+    display: flex;
+    width: 95%;
+    justify-content: space-between;
+}
+#category_cards__container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: auto;
+
+}
+#category_cards{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 40px;
+    margin: auto;
+}
+#searchForm_category{
+    display: flex;
+    align-items: center;
+  
 }
 #searchForm button {
     background: none;
@@ -118,47 +257,6 @@ body {
 }
 #searchForm button:hover{
     transform: scale(1.1);
-}
-
- /* Movie Info */
-.movie_header::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url(../assets/pokemon.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    opacity: 0.4;
-    z-index: -1;
-  }
-.movie_header {
-    width: 100%;
-    height: 350px;
-    position: relative;
-    color: white;
-  }
-.back_btn{
-    width: 80px;
-    margin: 15px 10px;
-    cursor: pointer;
-}
-.movie_info__container{
-    margin-top: -90px;
-    margin-bottom: 40px;
-}
-.movie_info{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 80px;
-    flex-wrap: wrap;
-}
-.movie_info__text{
-    width: 50%;
 }
 
 /* Popular Movies and series */
@@ -179,7 +277,7 @@ h1 {
     font-weight: 700;
     color: white;
 }
-.popular_movies #popular_movies__cards, #popular_series__cards{
+#popular_movies__cards, #popular_series__cards{
     display: flex;
     overflow-x: scroll;
     overscroll-behavior-x: contain;
@@ -194,32 +292,37 @@ h1 {
     transform: scale(1.02);
     cursor: pointer;
 }
-.popular_movies #popular_movies__cards::-webkit-scrollbar, #popular_series__cards::-webkit-scrollbar{
+#popular_movies__cards::-webkit-scrollbar, #popular_series__cards::-webkit-scrollbar{
     background-color: #090911;
     height: 3px;
 }
-.popular_movies #popular_movies__cards article, #popular_series__cards article{
-    min-width: 200px;
+#popular_movies__cards article, #popular_series__cards article, #category_cards article{
+    max-width: 200px;
     height: 340px;
     line-height: 12px;
+    min-width: 200px;
 }
-.popular_movies #popular_movies__cards article img, #popular_series__cards article img{
+#popular_movies__cards article img, #popular_series__cards article img, #category_cards img{
     width: 100%;
     height: 80%;
     border-radius: 10px;
+    cursor: pointer;
 }
-.popular_movies #popular_movies__cards article .movie_title, #popular_series__cards article .movie_title{
+#popular_movies__cards article img, #popular_series__cards article img, #category_cards img:hover{
+    transform: scale(1.02);
+}
+.movie_title{
     margin: 8px 0 0 0 ;
     font-size: 14px;
     font-weight: bold;
 }
-.popular_movies #popular_movies__cards article .cards_icons, #popular_series__cards article .cards_icons{
+.cards_icons{
     display: flex;
     font-size: 14px;
     align-items: center;
     justify-content: space-between;
 }
-.popular_movies #popular_movies__cards article .cards_icons svg, #popular_series__cards article .cards_icons svg{
+.cards_icons svg{
     width: 16px;
     margin-left: 4px;
 }
@@ -295,7 +398,9 @@ h1 {
 #id53 { --idColor: var(--green); }
 #id10752 { --idColor: var(--lightBlue); }
 #id37 { --idColor: var(--darkBlue); }
-
+#id10759 { --idColor: var(--purple-dark-1); }
+#id10762 { --idColor: var(--purple-medium-1); }
+#id10765 { --idColor: var(--yellow); }
 
 @media screen and (max-width: 767px){
     .movie_info__text{
@@ -318,7 +423,55 @@ h1 {
         margin: -100px auto 0px;
        
     }
-    #searchForm input {
+    #searchForm input, #searchForm_category input {
         height: 30px;
+    }
+    #category_cards{
+        justify-content: center;
+    }
+    .category_info__title{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .popular_movies #popular_movies__cards, #popular_series__cards {
+        height: 300px;
+    }
+
+    #popular_movies__cards article, #popular_series__cards article, #category_cards article{
+        max-width: 130px;
+        height: 240px;
+        line-height: 12px;
+        min-width: 130px;
+        margin-bottom: 50px;
+    }
+    .movie_genres_image {
+        min-width: 170px;
+        height: 46px;
+        text-align: center;
+    }
+
+    #movie_page_container{
+        flex-direction: column;  
+    }
+    .movie_header {
+        width: 100%;
+        min-height: 300px;
+        background-position: center;
+        background-size: cover;
+        opacity: 0.6;
+      }
+    .movie_info__container{
+        margin-top: -90px;
+        margin-bottom: 40px;
+        margin-right: auto;
+    }
+    .movie_info{
+        margin-top: -30px;
+    }
+    .movie_info iframe{
+        width: 90%;
+        height: 300px;
+        margin: 20px auto;
     }
 }
