@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const header = document.querySelector('.header');
 const searchBar = document.querySelector('.searchBar');
 const houseIcons = document.querySelectorAll('.house_icon');

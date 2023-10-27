@@ -129,5 +129,5 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# Confidential.js (API KEY)
-src/confidential.js
+# # Confidential.js (API KEY)
+# src/confidential.js
