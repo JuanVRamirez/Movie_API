@@ -522,7 +522,7 @@ footer{
     justify-content: center;
 }
 
-@media screen and (max-width: 767px){
+@media screen and (max-width: 630px){
     .movie_info__text{
         width: 100%;
     }
