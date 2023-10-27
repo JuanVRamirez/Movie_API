@@ -530,11 +530,18 @@ footer{
         margin-top: 20px;
         margin-bottom: 20px;
     }
+    .header{
+        background-size: contain;
+        height: 300px;
+        object-fit: contain;
+        background-position: top;
+    }
     .header_text{
         display: none;
     }
     #searchForm{
         left: 90px;
+        top: 110px;
     }
     .la{
         left: 131px;
@@ -604,6 +611,9 @@ footer{
         width: 100%;
         height: 300px;
         margin: 20px auto;
+    }
+    #category_cards{
+        justify-content: center;
     }
 }
 
