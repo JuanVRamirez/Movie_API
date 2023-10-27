@@ -131,3 +131,4 @@ dist
 
 # # Confidential.js (API KEY)
 # src/confidential.js
+serc/.env

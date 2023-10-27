@@ -1,4 +1,3 @@
-require("dotenv").config();
 
 const header = document.querySelector('.header');
 const searchBar = document.querySelector('.searchBar');
