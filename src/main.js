@@ -51,7 +51,7 @@ languageBtn.addEventListener('change', () => {
             break;
     }
 
-    if(location.hash.startsWith("#home") || location.hash.startsWith("")){
+    if(location.hash.startsWith("#home")){
         homePage();
     } else if (location.hash.startsWith("#movie")){
         movieDetailsPage()
@@ -167,7 +167,7 @@ function createMovies (movies, container, clean = true){
                 likedBtn.classList.toggle("likedBtn--active")
                 likedMovie(movie)
                 getLikedMovies()
-                if(location.hash.startsWith("#home") || location.hash.startsWith("")){
+                if(location.hash.startsWith("#home")){
                     homePage()
                 }
             })
