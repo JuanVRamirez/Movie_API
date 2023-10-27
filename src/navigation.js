@@ -1,3 +1,7 @@
+let maxPage;
+let page = 1;
+let infiniteScroll;
+
 searchButton.addEventListener("click", () => {
     location.hash = "#search="+inputMain.value;
 });
@@ -17,12 +21,16 @@ popularSeriesButton.addEventListener("click", () => {
     location.hash = "#trends=series";
 });
 
+window.addEventListener("scroll", infiniteScroll, false)
 window.addEventListener("DOMContentLoaded", navigate, false)
 window.addEventListener("hashchange", navigate, false)
 
-
 function navigate() {
     console.log({ location })
+    if(infiniteScroll){
+        window.removeEventListener("scroll", infiniteScroll, {passive:false})
+        infiniteScroll = undefined
+    }
 
     if (location.hash.startsWith("#trends=movies")){
         trendsMoviesPage()
@@ -42,7 +50,13 @@ function navigate() {
 
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
+
+    if(infiniteScroll){
+        window.addEventListener("scroll", infiniteScroll, {passive: false})
+    }
 }
+
+
 
 // Sections----------------
 
@@ -55,11 +69,14 @@ function homePage() {
     trendingSeries.classList.remove("inactive")
     categoryGenre.classList.remove("inactive")
     movieIframe.src = ""
+    languageBtn.classList.remove("inactive")
 
 
     getTrendingMoviesPreview()
     getGenresMoviesPreview()
     getTrendingSeriesPreview()
+    getLikedMovies()
+
     console.log("Home!!")
 }
 function categoriesPage() {
@@ -71,6 +88,8 @@ function categoriesPage() {
     trendingSeries.classList.add("inactive")
     categoryGenre.classList.remove("inactive")
     movieInfoPage.classList.add("inactive")
+    likedSection.classList.add("inactive")
+    languageBtn.classList.add("inactive")
     console.log("Categories!!!!")
 
     const [_,categoryData] = location.hash.split("=") //["#category", "id-name"]
@@ -79,7 +98,15 @@ function categoriesPage() {
     const decodedCategoryName = decodeURIComponent(categoryName);
 
     categoryGenre.innerText = decodedCategoryName;
-    getMoviesByCategory(categoryId);
+
+    if (categoryId == 10765 || categoryId == 10759){
+        getSeriesByCategory(categoryId)
+    } else {
+        getMoviesByCategory(categoryId)
+    }
+    
+    infiniteScroll = getPaginatedMoviesByCategory(categoryId)
+   
 }
 function movieDetailsPage() {
     header.classList.add("inactive")
@@ -89,6 +116,8 @@ function movieDetailsPage() {
     movieGenres.classList.add("inactive")
     trendingSeries.classList.add("inactive")
     categoryPage.classList.add("inactive")
+    likedSection.classList.add("inactive")
+    languageBtn.classList.remove("inactive")
     console.log("Movies")
 
 
@@ -105,6 +134,8 @@ function serieDetailsPage() {
     movieGenres.classList.add("inactive")
     trendingSeries.classList.add("inactive")
     categoryPage.classList.add("inactive")
+    likedSection.classList.add("inactive")
+    languageBtn.classList.remove("inactive")
     console.log("Movies")
 
 
@@ -122,14 +153,17 @@ function searchPage() {
     categoryGenre.classList.add("inactive")
     searchInputCategory.classList.remove("inactive")
     searchButtonCategory.classList.remove("inactive")
+    likedSection.classList.add("inactive")
+    languageBtn.classList.remove("inactive")
 
     const [_,query] = location.hash.split("=") //["#searc", "-"]
 
     getMoviesBySearch(query)
     console.log("Search!!")
+
+    infiniteScroll = getPaginatedMoviesBySearch(query);
 }
 function trendsMoviesPage() {
-    categoryCards.innerHTML = ""
     header.classList.add("inactive")
     trendingMovies.classList.add("inactive")
     categoryPage.classList.remove("inactive")
@@ -138,10 +172,14 @@ function trendsMoviesPage() {
     searchInputCategory.classList.add("inactive")
     searchButtonCategory.classList.add("inactive")
     categoryGenre.classList.add("inactive")
+    likedSection.classList.add("inactive")
+    languageBtn.classList.add("inactive")
     console.log("Trends!!")
     
-    categoryTitle.innerText = "Trending";
+    
     getTrendingMovies()
+
+    infiniteScroll = getPaginatedTrendingMovies;
 }
 function trendsSeriesPage() {
     categoryCards.innerHTML = ""
@@ -153,8 +191,10 @@ function trendsSeriesPage() {
     searchInputCategory.classList.add("inactive")
     searchButtonCategory.classList.add("inactive")
     categoryGenre.classList.add("inactive")
+    likedSection.classList.add("inactive")
+    languageBtn.classList.add("inactive")
     console.log("Trends!!")
     
-    categoryTitle.innerText = "Trending";
     getTrendingSeries()
+    infiniteScroll = getPaginatedTrendingSeries;
 }

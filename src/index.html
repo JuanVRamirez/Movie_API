@@ -10,13 +10,20 @@
 </head>
 <body>
 <main>
+    <select name="language" class="la">            
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+        <option value="pt-BR">Portuguese Br</option>
+        <option value="fr">French</option>
+    </select>
     <div class="header">
         <form id="searchForm">
-            <input type="text" placeholder="Vengadores" />
+            <input type="text" placeholder="Search" />
             <button><svg class="search_btn" width="63" height="63" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M25.375 0C39.3894 0 50.7501 11.3608 50.7501 25.375C50.7501 31.4367 48.6245 37.0017 45.0783 41.3658L62.2311 58.519C63.2563 59.5441 63.2563 61.2059 62.2311 62.2311C61.2994 63.1631 59.841 63.2478 58.8134 62.4852L58.519 62.2311L41.3659 45.0783C37.0017 48.6245 31.4367 50.75 25.375 50.75C11.3608 50.75 0 39.3894 0 25.375C0 11.3608 11.3608 0 25.375 0ZM25.375 5.25C14.2603 5.25 5.25001 14.2603 5.25001 25.375C5.25001 36.4896 14.2603 45.5 25.375 45.5C36.4897 45.5 45.5001 36.4896 45.5001 25.375C45.5001 14.2603 36.4897 5.25 25.375 5.25Z" fill="#F1EEF5"/>
                 </svg></button>
           </form>
+       
         <div class="header_text">
             <button class="header_text__button">Play</button>
             <p class="header_text_p">Peaky Blinders</p>
@@ -26,7 +33,12 @@
     <section class="popular_movies">
         <h1>Trending Movies</h1>
         <div id="popular_movies__cards">
-        
+            <article class="cards--loading"></article>
+            <article class="cards--loading"></article>
+            <article class="cards--loading"></article>
+            <article class="cards--loading"></article>
+            <article class="cards--loading"></article>
+            <article class="cards--loading"></article>
         </div>
         
         <div class="popular_movies_div_button">
@@ -35,21 +47,36 @@
     </section>
 
     <div class="movie_info__page inactive">
-        <div id="movie_page_container">
+
             <svg id="back_btn_movie" class="back_btn" height="50px" version="1.1" viewBox="0 0 24 24" width="40px" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><desc/><defs/><g fill="none" fill-rule="evenodd" id="miu" stroke="none" stroke-width="1"><g id="Artboard-1" transform="translate(-359.000000, -191.000000)"><g id="slice" transform="translate(215.000000, 119.000000)"/><path d="M360,202.5 C360,196.148725 365.148725,191 371.5,191 C377.851275,191 383,196.148725 383,202.5 C383,208.851275 377.851275,214 371.5,214 C365.148725,214 360,208.851275 360,202.5 Z M382,202.5 C382,196.70101 377.29899,192 371.5,192 C365.70101,192 361,196.70101 361,202.5 C361,208.29899 365.70101,213 371.5,213 C377.29899,213 382,208.29899 382,202.5 Z M372.656854,196.843146 L374.071068,198.257359 L369.828427,202.5 L374.071068,206.742641 L372.656854,208.156854 L367,202.5 L372.656854,196.843146 Z" fill="#FFFFFF" id="circle-back-arrow-outline-stroke"/></g></g></svg>
             <div class="movie_header"> 
             </div>
             <section class="movie_info__container">
                 <div class="movie_info">
-                    <h1></h1>
+                    <div class="movie_info_tittle">
+                        <h1></h1>
+                        <div class="movie_info_popularity">
+                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.65" d="M10.9865 0.982403C11.6056 -0.327461 13.3944 -0.327474 14.0135 0.982403L16.9614 7.21948L23.5531 8.21964C24.9374 8.42969 25.4902 10.2061 24.4885 11.2257L19.7186 16.0805L20.8447 22.9358C21.0811 24.3755 19.634 25.4734 18.3958 24.7936L12.5 21.557L6.6042 24.7936C5.36601 25.4734 3.91886 24.3755 4.15533 22.9358L5.28134 16.0805L0.511531 11.2257C-0.49019 10.2061 0.062573 8.42969 1.44692 8.21964L8.03862 7.21948L10.9865 0.982403Z" fill="#FBD757"/>
+                            </svg>
+                            <p></p>
+                        </div>
+                    </div>
                     <div class="movie_info__text">
-                    <p class="movie_overview"></p>
+                        <p class="movie_overview"></p>
                     <div id="movie_genre_card">
 
                     </div>
-                    </div>
                     <iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+                    <div>
+                        <h2>Related Movies</h2>
+                        <div id="related_movies__cards">
+
+                        </div>
+                    </div>
                 </div>
+
+                    
             </section>
         </div>
     </div>
@@ -72,29 +99,52 @@
             <h2 class="category_genre">Fantasy</h2>
             <div id="category_cards__container">
             <div id="category_cards">
-            
+                
              </div>
             </div>
+
         </section>
     </div>
 
     <section class="movie_genres">
         <h2 class="titles">Genres</h2>
         <div id="movie_genres__cards">
-             
+            <article class="genres--loading"></article>
+            <article class="genres--loading"></article>
+            <article class="genres--loading"></article>
+            <article class="genres--loading"></article>
+            <article class="genres--loading"></article>
+            <article class="genres--loading"></article>
         </div>
     </section>
     
     <section class="popular_series">
         <h2 class="titles">Trending Series</h2>
         <div id="popular_series__cards">
-        
+            <article class="cards--loading"></article>
+            <article class="cards--loading"></article>
+            <article class="cards--loading"></article>
+            <article class="cards--loading"></article>
+            <article class="cards--loading"></article>
+            <article class="cards--loading"></article>
         </div>
         
         <div class="popular_series_div_button">
             <button class="pink_buttons" id="popular_series_button">See more</button>
         </div>
     </section>
+
+    <section id="liked" class="liked-container ">
+            <h2 class="titles">Favorites</h2>
+        <div id="liked_movies__cards">
+
+        </div>
+    </section>
+    
+
+    <footer>
+        <p>Developed by Juan V Ramirez</p>
+    </footer>
 </main>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="node.js"></script>

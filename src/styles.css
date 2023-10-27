@@ -45,6 +45,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
+    
 
 }
 .pink_buttons {
@@ -59,6 +60,19 @@ body {
     box-shadow: 0px 6px 16px 4px #F340964D;
     border-radius: 25px;
     cursor: pointer;
+}
+.la {
+    position: absolute;
+    left: 190px;
+    top: 24px;
+    width: 120px;
+    height: 40px;
+    border-radius: 10px;
+    color: white;
+    background-color: #292929a1;
+    padding: 4px;
+    z-index: 6;
+    appearance: none;
 }
 .header_text{
     position: absolute;
@@ -125,21 +139,65 @@ body {
     transform: (1.1);
 }
 
+/* loading effects */
+
+.cards--loading {
+    background: #13131f;
+    border-radius: 8px;
+    width: 200px;
+    max-width: 200px;
+    min-width: 200px;
+    height: 272px;
+    max-height: 272px;
+    min-height: 272px;
+    animation: loading-skeleton infinite 1.5s;
+}
+.cards--loading:nth-child(odd) {
+    animation-delay: .2s;
+}
+.cards--loading:nth-child(3) {
+    animation-delay: .3s;
+}
+
+.genres--loading {
+    background: #13131f;
+    border-radius: 8px;
+    width: 200px;
+    max-width: 200px;
+    min-width: 200px;
+    height: 60px;
+    max-height: 60px;
+    min-height: 60px;
+    animation: loading-skeleton infinite 1.5s;
+  }
+.genres--loading:nth-child(odd) {
+    animation-delay: .2s;
+  }
+.genres--loading:nth-child(3) {
+    animation-delay: .3s;
+  }
+
  /* Movie Info */
 
 #movie_page_container{
     display: flex;
-    gap: 50px;
+    gap: 48px;
     background-image: linear-gradient(to bottom, #090910, #2b1d2d, #572a3d, #813c3b, #9b5a2e);
 }
+.movie_info_tittle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .movie_header {
-    width: 1000px;
-    min-height: 100vh;
+    width: 100%;
+    min-height: 500px;
+    display: block;
     position: relative;
-    color: white;
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0.6;
+    aspect-ratio: 800/281;
+    background-size: cover;
+    background-position:4px;
+    object-fit: cover;
   }
 .movie_category #movie_genres_image{
     width: 10px; 
@@ -185,12 +243,24 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 64%;
 }
 .movie_overview{
     font-size: 20px;
     font-weight: 600;
     line-height: 28px;
     text-align: justify;
+}
+.movie_info_popularity{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 5;
+}
+.movie_info_popularity p{
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
 }
 .movie_info{
     width: 100%;
@@ -204,11 +274,12 @@ body {
     z-index: 4;
 }
 .movie_info iframe{
-    width: 90%;
-    height: 400px;
+    width: 100%;
+    height: 640px;
+    margin-bottom: 40px;
 }
 .movie_info__text{
-    width: 90%;
+    width: 100%;
 }
 
 /* Categories */
@@ -239,7 +310,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     column-gap: 40px;
-    margin: auto;
+ 
+    
 }
 #searchForm_category{
     display: flex;
@@ -276,8 +348,9 @@ h1 {
     font-size: 40px;
     font-weight: 700;
     color: white;
+    position: relative;
 }
-#popular_movies__cards, #popular_series__cards{
+#popular_movies__cards, #popular_series__cards, #liked_movies__cards, #related_movies__cards{
     display: flex;
     overflow-x: scroll;
     overscroll-behavior-x: contain;
@@ -288,27 +361,61 @@ h1 {
     cursor: grab;
     height: 380px;
 }
-#popular_movies__cards article:hover, #popular_series__cards article:hover{
+#popular_movies__cards article:hover, #popular_series__cards article:hover, #liked_movies__cards article:hover, #related_movies__cards article:hover{
     transform: scale(1.02);
     cursor: pointer;
 }
-#popular_movies__cards::-webkit-scrollbar, #popular_series__cards::-webkit-scrollbar{
+#popular_movies__cards::-webkit-scrollbar, #popular_series__cards::-webkit-scrollbar, #liked_movies__cards::-webkit-scrollbar, #related_movies__cards::-webkit-scrollbar{
     background-color: #090911;
     height: 3px;
 }
-#popular_movies__cards article, #popular_series__cards article, #category_cards article{
+#popular_movies__cards article, #popular_series__cards article, #category_cards article, #liked_movies__cards article, #related_movies__cards article{
     max-width: 200px;
     height: 340px;
     line-height: 12px;
     min-width: 200px;
+    position: relative;
 }
-#popular_movies__cards article img, #popular_series__cards article img, #category_cards img{
+#popular_movies__cards article img, #popular_series__cards article img, #category_cards img, #liked_movies__cards img, #related_movies__cards img{
     width: 100%;
     height: 80%;
-    border-radius: 10px;
+    border-radius: 20px;
     cursor: pointer;
 }
-#popular_movies__cards article img, #popular_series__cards article img, #category_cards img:hover{
+.likedBtn{
+    width: 34px;
+    height: 34px;
+    border-radius: 30px;
+    padding: 0;
+    margin: 0;
+    background: none;
+    position: absolute;
+    z-index: 9;
+    top: 4px;
+    right: 4px;
+    border: none;
+}
+.likedBtn::before{
+    content: "🤍";
+    font-size: 20px;
+}
+.likedBtn--active{
+    width: 34px;
+    height: 34px;
+    border-radius: 30px;
+    padding: 0;
+    margin: 0;
+    background: none;
+    position: absolute;
+    z-index: 9;
+    top: 4px;
+    right: 4px;
+    border: none;
+}
+.likedBtn--active:before{
+    content: "💔"
+}
+#popular_movies__cards article img, #popular_series__cards article img, #category_cards img:hover, #liked_movies__cards img:hover{
     transform: scale(1.02);
 }
 .movie_title{
@@ -323,8 +430,8 @@ h1 {
     justify-content: space-between;
 }
 .cards_icons svg{
-    width: 16px;
-    margin-left: 4px;
+    width: 20px;
+    margin-left: 8px;
 }
 .popular_movies_div_button,.popular_series_div_button{
     width: 100%;
@@ -402,6 +509,19 @@ h1 {
 #id10762 { --idColor: var(--purple-medium-1); }
 #id10765 { --idColor: var(--yellow); }
 
+/* Footer */
+
+footer{
+    display: flex;
+    background-color: #232338;
+    width: 100%;
+    height: 44px;
+    color: white;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+}
+
 @media screen and (max-width: 767px){
     .movie_info__text{
         width: 100%;
@@ -416,6 +536,10 @@ h1 {
     #searchForm{
         left: 90px;
     }
+    .la{
+        left: 137px;
+        height: 30px;
+    }
     h1{
         font-size: 30px;
     }
@@ -426,24 +550,30 @@ h1 {
     #searchForm input, #searchForm_category input {
         height: 30px;
     }
-    #category_cards{
-        justify-content: center;
-    }
+    
     .category_info__title{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
     }
-    .popular_movies #popular_movies__cards, #popular_series__cards {
+    .popular_movies #popular_movies__cards, #popular_series__cards, #related_movies__cards, #liked_movies__cards {
         height: 300px;
     }
 
-    #popular_movies__cards article, #popular_series__cards article, #category_cards article{
+    #popular_movies__cards article, #popular_series__cards article, #category_cards article, #related_movies__cards article, #liked_movies__cards article{
         max-width: 130px;
         height: 240px;
         line-height: 12px;
         min-width: 130px;
         margin-bottom: 50px;
+    }
+    .cards--loading{
+        height: 200px;
+        max-height: 200px;
+        min-height: 200px;
+        width: 130px;
+        max-width: 130px;
+        min-width: 130px;
     }
     .movie_genres_image {
         min-width: 170px;
@@ -465,13 +595,25 @@ h1 {
         margin-top: -90px;
         margin-bottom: 40px;
         margin-right: auto;
+        width: 80%;
     }
     .movie_info{
-        margin-top: -30px;
+        margin-top: 24px;
     }
     .movie_info iframe{
-        width: 90%;
+        width: 100%;
         height: 300px;
         margin: 20px auto;
     }
 }
+
+/* Animations */
+@keyframes loading-skeleton {
+    0%, 100% {
+      opacity: 100%;
+    }
+    50% {
+      opacity: 0%;
+    }
+  }
+
